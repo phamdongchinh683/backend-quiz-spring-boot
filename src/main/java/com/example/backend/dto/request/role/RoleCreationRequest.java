@@ -1,4 +1,4 @@
-package com.example.backend.dto.request;
+package com.example.backend.dto.request.role;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,6 +12,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-public class ExamCreation<T> {
-        T result;
+public class RoleCreationRequest {
+ String name;
 }

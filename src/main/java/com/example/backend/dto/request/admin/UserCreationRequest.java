@@ -1,4 +1,4 @@
-package com.example.backend.dto.request;
+package com.example.backend.dto.request.admin;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Size;
@@ -14,7 +14,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-public class UserCreation {
+public class UserCreationRequest {
         @Column(name = "first_name")
         String firstName;
         @Column(name = "last_name")

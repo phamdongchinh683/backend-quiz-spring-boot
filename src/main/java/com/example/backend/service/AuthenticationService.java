@@ -12,10 +12,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.backend.dto.request.AuthenticationRequest;
-import com.example.backend.dto.request.IntrospectRequest;
+import com.example.backend.dto.request.auth.AuthenticationRequest;
+import com.example.backend.dto.request.jwt.TokenRequest;
 import com.example.backend.dto.response.AuthenticationResponse;
-import com.example.backend.dto.response.IntrospectResponse;
+import com.example.backend.dto.response.TokenResponse;
 import com.example.backend.exception.AppException;
 import com.example.backend.exception.ErrorCode;
 import com.example.backend.model.User;
@@ -100,7 +100,7 @@ public class AuthenticationService {
         }
 
         private String generateToken(User user) {
-                JWSHeader header = new JWSHeader(JWSAlgorithm.HS256);
+                JWSHeader header = new JWSHeader(JWSAlgorithm.HS512);
 
                 String jwtId = UUID.randomUUID().toString();
 
@@ -125,7 +125,7 @@ public class AuthenticationService {
                 }
         }
 
-        public IntrospectResponse introspect(IntrospectRequest request) throws JOSEException, ParseException {
+        public TokenResponse introspect(TokenRequest request) throws JOSEException, ParseException {
                 var token = request.getToken();
                 boolean isValid = true;
 
@@ -133,10 +133,9 @@ public class AuthenticationService {
                         verifyToken(token, false);
                 } catch (AppException e) {
                         isValid = false;
-
                 }
 
-                return IntrospectResponse.builder().valid(isValid).build();
+                return TokenResponse.builder().valid(isValid).build();
 
         }
 }

@@ -9,44 +9,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.dto.request.exam.ExamCreationRequest;
 import com.example.backend.dto.response.ApiResponse;
 import com.example.backend.model.Exam;
 import com.example.backend.service.ExamService;
 
-import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequiredArgsConstructor
+
 @RequestMapping(path = "/api/v1/admin/manage-exam")
 
 public class ExamController {
         @Autowired
-        private ExamService examService;
-
-        public ExamController(ExamService examService) {
-                this.examService = examService;
-        }
+        ExamService examService;
 
         @GetMapping("/exam-list")
         ApiResponse<List<Exam>> examList() {
-                ApiResponse<List<Exam>> apiResponse = new ApiResponse<>();
-                List<Exam> exams = examService.getExams();
-                apiResponse.setCode(200);
-                apiResponse.setData(exams);
-                return apiResponse;
+                return ApiResponse.<List<Exam>>builder()
+                                .data(examService.getExams()).code(200)
+                                .build();
         }
 
         @PostMapping("/create-exam")
-        ApiResponse<List<Exam>> createExam(@RequestBody @Valid List<Exam> request) {
-                ApiResponse<List<Exam>> apiResponse = new ApiResponse<>();
-                var saveExams = examService.addExam(request);
-                apiResponse.setCode(200);
-                apiResponse.setData(saveExams);
-                return apiResponse;
+        ApiResponse<List<Exam>> createExam(@RequestBody List<ExamCreationRequest> request) {
+                return ApiResponse.<List<Exam>>builder()
+                                .data(examService.addExams(request)).code(200)
+                                .build();
         }
 
         // @PutMapping("/update/{id}")
-        // UserResponse updateExam(@PathVariable("id") String id, @RequestBody
-        // UserUpdate request) {
+        // ApiResponse<String> updateExam(@PathVariable("id") String id, @RequestBody
+        // ExamUpdateRequest request) {
         // return examService.updateExam(id, request);
         // }
 

@@ -1,4 +1,4 @@
-package com.example.backend.dto.response;
+package com.example.backend.dto.request.jwt;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,6 +12,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-public class IntrospectResponse {
- boolean valid;
+
+public class TokenRequest {
+ String token;
 }

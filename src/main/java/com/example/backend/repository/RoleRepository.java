@@ -3,10 +3,9 @@ package com.example.backend.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.backend.model.Exam;
+import com.example.backend.model.Role;
 
 @Repository
-
-public interface ExamRepository extends JpaRepository<Exam, String> {
+public interface RoleRepository extends JpaRepository<Role, String> {
 
 }

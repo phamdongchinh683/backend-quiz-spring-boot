@@ -15,8 +15,6 @@ import lombok.experimental.FieldDefaults;
 @Builder
 
 public class UserResponse {
-        @Column(name = "id")
-        String id;
         @Column(name = "first_name")
         String firstName;
         @Column(name = "last_name")
@@ -27,8 +25,6 @@ public class UserResponse {
         String cityName;
         @Column(name = "address")
         String address;
-        @Column(name = "password")
-        String password;
         @Column(name = "email")
         String email;
         @Column(name = "phone_number")

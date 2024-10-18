@@ -1,4 +1,4 @@
-package com.example.backend.dto.request;
+package com.example.backend.dto.request.auth;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

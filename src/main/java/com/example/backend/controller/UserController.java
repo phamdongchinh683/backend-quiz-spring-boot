@@ -12,57 +12,57 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backend.dto.request.UserCreation;
-import com.example.backend.dto.request.UserUpdate;
+import com.example.backend.dto.request.admin.UserCreationRequest;
+import com.example.backend.dto.request.admin.UserUpdateRequest;
 import com.example.backend.dto.response.ApiResponse;
 import com.example.backend.dto.response.UserResponse;
 import com.example.backend.model.User;
 import com.example.backend.service.UserService;
 
-import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping(path = "/api/v1/admin/manage-user")
+@RequiredArgsConstructor
+
 public class UserController {
 
- @Autowired
- private UserService userService;
+  @Autowired
+  UserService userService;
 
- public UserController(UserService userService) {
-  this.userService = userService;
- }
+  @GetMapping("/user-list")
+  ApiResponse<List<User>> userList() {
+    return ApiResponse.<List<User>>builder()
+        .data(userService.getUsers()).code(200)
+        .build();
 
- @GetMapping("/user-list")
- ApiResponse<List<User>> userList() {
-  ApiResponse<List<User>> apiResponse = new ApiResponse<>();
-  List<User> users = userService.getUsers();
-  apiResponse.setCode(200);
-  apiResponse.setData(users);
-  return apiResponse;
- }
+  }
 
- @PostMapping("/create-user")
- ApiResponse<User> createUser(@RequestBody @Valid UserCreation request) {
-  ApiResponse<User> apiResponse = new ApiResponse<>();
-  apiResponse.setData(userService.createUser(request));
-  return apiResponse;
- }
+  @PostMapping("/create-user")
+  ApiResponse<List<User>> createUser(@RequestBody List<UserCreationRequest> requests) {
+    return ApiResponse.<List<User>>builder()
+        .data(userService.createUsers(requests)).code(200)
+        .build();
+  }
 
- @GetMapping("/user-info/{id}")
- UserResponse profile(@PathVariable("id") String id) {
-  return userService.getUser(id);
- }
+  @GetMapping("/user-info/{id}")
+  ApiResponse<UserResponse> profile(@PathVariable("id") String id) {
+    return ApiResponse.<UserResponse>builder()
+        .data(userService.getUser(id)).code(200)
+        .build();
+  }
 
- @PutMapping("/user-update/{id}")
- UserResponse updateUser(@PathVariable("id") String id, @RequestBody UserUpdate request) {
-  return userService.updateUser(id, request);
- }
+  @PutMapping("/user-update/{id}")
+  ApiResponse<UserResponse> updateUser(@PathVariable("id") String id, @RequestBody UserUpdateRequest request) {
+    return ApiResponse.<UserResponse>builder()
+        .data(userService.updateUser(id, request)).code(200)
+        .build();
+  }
 
- @DeleteMapping("/delete-user/{id}")
- ApiResponse<User> deleteUser(@PathVariable("id") String id) {
-  ApiResponse<User> apiResponse = new ApiResponse<>();
-  userService.deleteUser(id);
-  apiResponse.setMessage("User has been deleted");
-  return apiResponse;
- }
+  @DeleteMapping("/delete-user/{id}")
+  ApiResponse<Void> deleteUser(@PathVariable("id") String id) {
+    userService.deleteUser(id);
+    return ApiResponse.<Void>builder().code(200).message("User has been deleted")
+        .build();
+  }
 }
