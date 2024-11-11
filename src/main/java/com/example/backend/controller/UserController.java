@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backend.dto.request.admin.UserCreationRequest;
-import com.example.backend.dto.request.admin.UserUpdateRequest;
+import com.example.backend.dto.request.UserCreationRequest;
+import com.example.backend.dto.request.UserUpdateRequest;
 import com.example.backend.dto.response.ApiResponse;
 import com.example.backend.dto.response.UserResponse;
 import com.example.backend.model.User;

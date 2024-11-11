@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backend.dto.request.exam.ExamCreationRequest;
+import com.example.backend.dto.request.ExamCreationRequest;
 import com.example.backend.dto.response.ApiResponse;
 import com.example.backend.model.Exam;
 import com.example.backend.service.ExamService;
@@ -20,7 +20,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 
 @RequestMapping(path = "/api/v1/admin/manage-exam")
-
 public class ExamController {
         @Autowired
         ExamService examService;
@@ -39,17 +38,4 @@ public class ExamController {
                                 .build();
         }
 
-        // @PutMapping("/update/{id}")
-        // ApiResponse<String> updateExam(@PathVariable("id") String id, @RequestBody
-        // ExamUpdateRequest request) {
-        // return examService.updateExam(id, request);
-        // }
-
-        // @DeleteMapping("/delete/{id}")
-        // ApiResponse<Exam> deleteExam(@PathVariable("id") String id) {
-        // ApiResponse<Exam> apiResponse = new ApiResponse<>();
-        // examService.deleteExam(id);
-        // apiResponse.setMessage("User has been deleted");
-        // return apiResponse;
-        // }
 }

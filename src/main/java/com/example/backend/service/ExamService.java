@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.backend.dto.request.exam.ExamCreationRequest;
-import com.example.backend.dto.request.exam.ExamUpdateRequest;
+import com.example.backend.dto.request.ExamCreationRequest;
+import com.example.backend.dto.request.ExamUpdateRequest;
 import com.example.backend.mapper.ExamMapper;
 import com.example.backend.model.Exam;
 import com.example.backend.repository.ExamRepository;

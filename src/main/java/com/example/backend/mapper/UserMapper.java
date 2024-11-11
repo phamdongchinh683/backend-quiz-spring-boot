@@ -3,8 +3,8 @@ package com.example.backend.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
-import com.example.backend.dto.request.admin.UserCreationRequest;
-import com.example.backend.dto.request.admin.UserUpdateRequest;
+import com.example.backend.dto.request.UserCreationRequest;
+import com.example.backend.dto.request.UserUpdateRequest;
 import com.example.backend.dto.response.UserResponse;
 import com.example.backend.model.User;
 

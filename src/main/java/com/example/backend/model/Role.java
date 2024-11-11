@@ -20,6 +20,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Entity
 @Table(name = "roles")
+
 public class Role {
  @Id
  @GeneratedValue(strategy = GenerationType.UUID)

@@ -1,5 +1,8 @@
 package com.example.backend.model;
 
+import java.util.Date;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,7 +27,14 @@ public class Score {
    @Id
    @GeneratedValue(strategy = GenerationType.UUID)
    String id;
-   Exam exam;
-   User user;
-   float score;
+   @Column(name = "score")
+   float totalScore;
+   @Column(name = "exam_id")
+   String examId;
+   @Column(name = "user_id")
+   String userId;
+   @Column(name = "time")
+   String time;
+   @Column(name = "exam_date")
+   Date date;
 }

@@ -1,7 +1,6 @@
-package com.example.backend.dto.request.admin;
+package com.example.backend.dto.request;
 
 import jakarta.persistence.Column;
-import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-public class UserCreationRequest {
+public class UserUpdateRequest {
         @Column(name = "first_name")
         String firstName;
         @Column(name = "last_name")
@@ -25,10 +24,6 @@ public class UserCreationRequest {
         String cityName;
         @Column(name = "address")
         String address;
-        @Size(min = 6, message = "USERNAME_INVALID")
-        @Column(name = "username")
-        String username;
-        @Size(min = 8, message = "INVALID_PASSWORD")
         @Column(name = "password")
         String password;
         @Column(name = "email")

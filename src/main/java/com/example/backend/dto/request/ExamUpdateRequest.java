@@ -1,4 +1,4 @@
-package com.example.backend.dto.request.exam;
+package com.example.backend.dto.request;
 
 import jakarta.persistence.Column;
 import lombok.AccessLevel;
@@ -25,3 +25,4 @@ public class ExamUpdateRequest {
  @Column(name = "audio")
  String audio;
 }
+

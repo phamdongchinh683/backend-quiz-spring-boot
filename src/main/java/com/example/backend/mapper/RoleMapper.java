@@ -2,7 +2,7 @@ package com.example.backend.mapper;
 
 import org.mapstruct.Mapper;
 
-import com.example.backend.dto.request.role.RoleCreationRequest;
+import com.example.backend.dto.request.RoleCreationRequest;
 import com.example.backend.dto.response.RoleResponse;
 import com.example.backend.model.Role;
 

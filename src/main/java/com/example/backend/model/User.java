@@ -7,14 +7,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 
 @Table(name = "users")
@@ -38,7 +44,7 @@ public class User {
         String password;
         @Column(name = "email")
         String email;
-        @ManyToOne(fetch = FetchType.EAGER)
+        @OneToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "role_id", nullable = false)
         Role role;
         @Column(name = "phone_number")

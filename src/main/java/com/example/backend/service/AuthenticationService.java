@@ -12,8 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.backend.dto.request.auth.AuthenticationRequest;
-import com.example.backend.dto.request.jwt.TokenRequest;
+import com.example.backend.dto.request.AuthenticationRequest;
+import com.example.backend.dto.request.TokenRequest;
 import com.example.backend.dto.response.AuthenticationResponse;
 import com.example.backend.dto.response.TokenResponse;
 import com.example.backend.exception.AppException;

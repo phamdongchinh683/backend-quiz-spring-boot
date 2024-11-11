@@ -1,4 +1,4 @@
-package com.example.backend.dto.response;
+package com.example.backend.dto.request;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,9 +12,6 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-
-public class QuestionResponse {
- String questionContent;
- String categoryQuestion;
- String answerList;
+public class RoleCreationRequest {
+ String name;
 }

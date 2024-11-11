@@ -1,4 +1,7 @@
-package com.example.backend.dto.request.role;
+package com.example.backend.dto.request;
+
+import com.example.backend.model.Categories;
+import com.example.backend.model.Exam;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,6 +15,10 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-public class RoleCreationRequest {
- String name;
+public class QuestionCreationRequest {
+ String questionContent;
+ Categories categoryQuestion;
+ Exam examId;
+ String answerList;
+ String correctAnswer;
 }

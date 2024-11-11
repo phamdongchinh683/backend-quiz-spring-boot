@@ -10,11 +10,9 @@ import lombok.experimental.FieldDefaults;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 
-public class QuestionResponse {
- String questionContent;
- String categoryQuestion;
- String answerList;
+public class ScoreResponse {
+ double totalScore;
 }

@@ -1,4 +1,4 @@
-package com.example.backend.dto.request.jwt;
+package com.example.backend.dto.request;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
-
-public class TokenRequest {
- String token;
+public class SubmitAnswerRequest {
+ String id;
+ String answer;
 }

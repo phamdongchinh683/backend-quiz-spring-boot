@@ -8,8 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.backend.dto.request.admin.UserCreationRequest;
-import com.example.backend.dto.request.admin.UserUpdateRequest;
+import com.example.backend.dto.request.UserCreationRequest;
+import com.example.backend.dto.request.UserUpdateRequest;
 import com.example.backend.dto.response.UserResponse;
 import com.example.backend.exception.AppException;
 import com.example.backend.exception.ErrorCode;

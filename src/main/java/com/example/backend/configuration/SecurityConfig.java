@@ -17,9 +17,10 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+
 public class SecurityConfig {
   private final String[] publicEndPoints = {
-      "/api/auth/login", "/api/auth/check-token",
+      "/api/auth/login", "/api/auth/check-token/", "/api/auth/signup"
   };
 
   @Autowired
