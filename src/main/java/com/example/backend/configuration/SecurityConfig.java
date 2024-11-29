@@ -20,7 +20,8 @@ import org.springframework.web.filter.CorsFilter;
 
 public class SecurityConfig {
   private final String[] publicEndPoints = {
-      "/api/auth/login", "/api/auth/check-token/", "/api/auth/signup"
+      "/api/auth/login", "/api/auth/check-token/", "/api/auth/signup", "/api/auth/exam-list",
+      "/api/auth/take-exam/{id}", "/api/auth/submit-answer/{examId}/{username}", "/api/auth/profile/{username}",
   };
 
   @Autowired

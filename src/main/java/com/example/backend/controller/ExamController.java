@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 
-@RequestMapping(path = "/api/v1/admin/manage-exam")
+@RequestMapping(path = "/api/auth")
 public class ExamController {
         @Autowired
         ExamService examService;

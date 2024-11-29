@@ -67,6 +67,12 @@ public class UserService {
                 .toUserResponse(userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found")));
     }
 
+    public UserResponse getUserByUsername(String username) {
+        return userMapper
+                .toUserResponse(userRepository.findByUsername(username)
+                        .orElseThrow(() -> new RuntimeException("User not found")));
+    }
+
     public UserResponse updateUser(String id, UserUpdateRequest request) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Not data update for this user"));

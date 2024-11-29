@@ -20,6 +20,7 @@ import com.example.backend.dto.response.AuthenticationResponse;
 import com.example.backend.dto.response.QuestionResponse;
 import com.example.backend.dto.response.ScoreResponse;
 import com.example.backend.dto.response.TokenResponse;
+import com.example.backend.dto.response.UserResponse;
 import com.example.backend.service.AuthenticationService;
 import com.example.backend.service.QuestionService;
 import com.example.backend.service.ScoreService;
@@ -65,27 +66,24 @@ public class AuthenticationController {
     return ApiResponse.builder().message("Sign up successfully").code(200).build();
   }
 
-  @GetMapping("/question-exam/{id}")
+  @GetMapping("/profile/{username}")
+  ApiResponse detailUser(@PathVariable("username") String username) {
+    return ApiResponse.<UserResponse>builder()
+        .data(userService.getUserByUsername(username)).code(200)
+        .build();
+  }
+
+  @GetMapping("/take-exam/{id}")
   ApiResponse<List<QuestionResponse>> getQuestionByExamId(@PathVariable String id) {
     return ApiResponse.<List<QuestionResponse>>builder()
         .data(questionService.getQuestionsByExamId(id)).code(200)
         .build();
   }
 
-  @PostMapping("/submit-answer/{examId}/{userId}")
+  @PostMapping("/submit-answer/{examId}/{username}")
   ApiResponse<ScoreResponse> submitAnswer(@RequestBody List<SubmitAnswerRequest> request,
       @PathVariable String examId,
-      @PathVariable String userId) {
-    return ApiResponse.<ScoreResponse>builder()
-        .data(scoreService.totalScore(request))
-        .code(200)
-        .build();
-  }
-
-  @GetMapping("/exam-result")
-  ApiResponse<ScoreResponse> examResult(@RequestBody List<SubmitAnswerRequest> request,
-      @PathVariable String examId,
-      @PathVariable String userId) {
+      @PathVariable String username) {
     return ApiResponse.<ScoreResponse>builder()
         .data(scoreService.totalScore(request))
         .code(200)

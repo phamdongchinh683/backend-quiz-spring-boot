@@ -13,7 +13,7 @@ import com.example.backend.model.Question;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, String> {
 
-  @Query("SELECT new com.example.backend.dto.response.QuestionResponse(q.questionContent, q.answerList, q.correctAnswer) "
+  @Query("SELECT new com.example.backend.dto.response.QuestionResponse(q.id , q.questionContent, q.answerList) "
       +
       "FROM Question q " +
       "JOIN q.categoryQuestion ctgr " +

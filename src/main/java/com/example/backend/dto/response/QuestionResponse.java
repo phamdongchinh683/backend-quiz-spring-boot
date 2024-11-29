@@ -14,7 +14,7 @@ import lombok.experimental.FieldDefaults;
 @Builder
 
 public class QuestionResponse {
+ String id;
  String questionContent;
- String categoryQuestion;
  String answerList;
 }

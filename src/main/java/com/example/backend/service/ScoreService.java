@@ -20,31 +20,31 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ScoreService {
 
- @Autowired
- QuestionRepository questionRepository;
- @Autowired
- ScoreRepository scoreRepository;
+  @Autowired
+  QuestionRepository questionRepository;
+  @Autowired
+  ScoreRepository scoreRepository;
 
- public ScoreResponse totalScore(List<SubmitAnswerRequest> requests) {
-  List<Question> questions = questionRepository.findAll();
+  public ScoreResponse totalScore(List<SubmitAnswerRequest> requests) {
+    List<Question> questions = questionRepository.findAll();
 
-  double totalScore = 0.0;
+    double totalScore = 0.0;
 
-  for (SubmitAnswerRequest request : requests) {
-   Question question = questions.stream()
-     .filter(q -> q.getId().equals(request.getId()))
-     .findFirst()
-     .orElse(null);
+    for (SubmitAnswerRequest request : requests) {
+      Question question = questions.stream()
+          .filter(q -> q.getId().equals(request.getId()))
+          .findFirst()
+          .orElse(null);
 
-   if (question != null && question.getCorrectAnswer().equalsIgnoreCase(request.getAnswer())) {
-    totalScore += 0.25;
-   }
+      if (question != null && question.getCorrectAnswer().equalsIgnoreCase(request.getAnswer())) {
+        totalScore += 0.25;
+      }
+    }
+
+    ScoreResponse response = new ScoreResponse();
+    response.setTotalScore(totalScore);
+
+    return response;
   }
-
-  ScoreResponse response = new ScoreResponse();
-  response.setTotalScore(totalScore);
-
-  return response;
- }
 
 }
