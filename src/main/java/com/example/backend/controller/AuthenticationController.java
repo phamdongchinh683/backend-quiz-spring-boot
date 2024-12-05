@@ -67,7 +67,7 @@ public class AuthenticationController {
   }
 
   @GetMapping("/profile/{username}")
-  ApiResponse detailUser(@PathVariable("username") String username) {
+  ApiResponse detailUser(@PathVariable String username) {
     return ApiResponse.<UserResponse>builder()
         .data(userService.getUserByUsername(username)).code(200)
         .build();

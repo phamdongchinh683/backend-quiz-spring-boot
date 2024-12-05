@@ -1,5 +1,7 @@
 package com.example.backend.configuration;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,8 +13,8 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -20,8 +22,7 @@ import org.springframework.web.filter.CorsFilter;
 
 public class SecurityConfig {
   private final String[] publicEndPoints = {
-      "/api/auth/login", "/api/auth/check-token/", "/api/auth/signup", "/api/auth/exam-list",
-      "/api/auth/take-exam/{id}", "/api/auth/submit-answer/{examId}/{username}", "/api/auth/profile/{username}",
+      "/api/auth/login", "/api/auth/check-token/", "/api/auth/signup",
   };
 
   @Autowired
@@ -29,6 +30,7 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+    httpSecurity.cors();
     httpSecurity.authorizeHttpRequests(
         request -> request.requestMatchers(publicEndPoints)
             .permitAll()
@@ -45,17 +47,14 @@ public class SecurityConfig {
   }
 
   @Bean
-  public CorsFilter corsFilter() {
+  public CorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
-
-    corsConfiguration.addAllowedOrigin("*");
-    corsConfiguration.addAllowedMethod("*");
-    corsConfiguration.addAllowedHeader("*");
-
-    UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
-    urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
-
-    return new CorsFilter(urlBasedCorsConfigurationSource);
+    corsConfiguration.setAllowedOrigins(List.of("*"));
+    corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    corsConfiguration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", corsConfiguration);
+    return source;
   }
 
   @Bean
