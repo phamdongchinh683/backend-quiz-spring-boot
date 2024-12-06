@@ -15,4 +15,5 @@ import lombok.experimental.FieldDefaults;
 
 public class ScoreResponse {
  double totalScore;
+ int numberCorrect;
 }

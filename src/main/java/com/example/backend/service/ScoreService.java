@@ -29,7 +29,7 @@ public class ScoreService {
     List<Question> questions = questionRepository.findAll();
 
     double totalScore = 0.0;
-
+    int numberCorrect = 0;
     for (SubmitAnswerRequest request : requests) {
       Question question = questions.stream()
           .filter(q -> q.getId().equals(request.getId()))
@@ -37,12 +37,14 @@ public class ScoreService {
           .orElse(null);
 
       if (question != null && question.getCorrectAnswer().equalsIgnoreCase(request.getAnswer())) {
-        totalScore += 0.25;
+        totalScore += 10;
+        numberCorrect += 1;
       }
     }
 
     ScoreResponse response = new ScoreResponse();
     response.setTotalScore(totalScore);
+    response.setNumberCorrect(numberCorrect);
 
     return response;
   }
