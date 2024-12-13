@@ -45,7 +45,6 @@ public class ScoreService {
     ScoreResponse response = new ScoreResponse();
     response.setTotalScore(totalScore);
     response.setNumberCorrect(numberCorrect);
-
     return response;
   }
 

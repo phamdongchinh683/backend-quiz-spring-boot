@@ -52,4 +52,8 @@ public class ExamService {
                 examRepository.deleteById(id);
         }
 
+        public Exam examById(String id) {
+                Exam exam = examRepository.findById(id).orElseThrow(() -> new RuntimeException("Exam not found"));
+                return exam;
+        }
 }

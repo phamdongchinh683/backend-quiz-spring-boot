@@ -11,7 +11,6 @@ public enum ErrorCode {
         VALID_TOKEN(403, "Invalid token"),
         UNAUTHORIZED(401, "You do not have permission"),
         ;
-
         private final int code;
         private final String message;
 
