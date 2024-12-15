@@ -45,7 +45,6 @@ public class GlobalExceptionHandler {
 
                         var constraintViolation = exception.getBindingResult().getAllErrors().get(0)
                                         .unwrap(ConstraintViolation.class);
-
                         attributes = constraintViolation.getConstraintDescriptor().getAttributes();
 
                 } catch (IllegalArgumentException e) {
