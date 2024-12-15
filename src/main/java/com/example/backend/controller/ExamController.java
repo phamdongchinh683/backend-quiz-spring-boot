@@ -61,7 +61,7 @@ public class ExamController {
         ApiResponse<Void> examDelete(@PathVariable String id) {
                 examService.deleteExam(id);
                 return ApiResponse.<Void>builder().code(200).message("User has been deleted")
-                    .build();
+                                .build();
         }
 
 }
