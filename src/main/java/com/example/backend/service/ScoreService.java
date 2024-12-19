@@ -9,7 +9,6 @@ import com.example.backend.dto.request.SubmitAnswerRequest;
 import com.example.backend.dto.response.ScoreResponse;
 import com.example.backend.model.Question;
 import com.example.backend.repository.QuestionRepository;
-import com.example.backend.repository.ScoreRepository;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +21,6 @@ public class ScoreService {
 
   @Autowired
   QuestionRepository questionRepository;
-  @Autowired
-  ScoreRepository scoreRepository;
 
   public ScoreResponse totalScore(List<SubmitAnswerRequest> requests) {
     List<Question> questions = questionRepository.findAll();

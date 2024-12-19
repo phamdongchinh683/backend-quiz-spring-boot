@@ -3,6 +3,7 @@ package com.example.backend.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
+import com.example.backend.dto.request.AuthUpdatePassword;
 import com.example.backend.dto.request.UserCreationRequest;
 import com.example.backend.dto.request.UserUpdateRequest;
 import com.example.backend.dto.response.UserResponse;
@@ -13,6 +14,8 @@ public interface UserMapper {
         User toUser(UserCreationRequest request);
 
         void update(@MappingTarget User user, UserUpdateRequest request);
+
+        void updatePassword(@MappingTarget User user, AuthUpdatePassword request);
 
         UserResponse toUserResponse(User user);
 

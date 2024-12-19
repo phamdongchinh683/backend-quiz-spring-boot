@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backend.dto.request.AuthUpdatePassword;
 import com.example.backend.dto.request.AuthenticationRequest;
 import com.example.backend.dto.request.SubmitAnswerRequest;
 import com.example.backend.dto.request.TokenRequest;
@@ -89,4 +90,11 @@ public class AuthenticationController {
         .code(200)
         .build();
   }
+
+  @PostMapping("/profile/change-password/{username}")
+  public ApiResponse<Void> updatePassword(@PathVariable String username,
+      @RequestBody AuthUpdatePassword request) {
+    return userService.newPassword(username, request);
+  }
+
 }

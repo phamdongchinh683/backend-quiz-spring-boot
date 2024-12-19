@@ -8,8 +8,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.backend.dto.request.AuthUpdatePassword;
 import com.example.backend.dto.request.UserCreationRequest;
 import com.example.backend.dto.request.UserUpdateRequest;
+import com.example.backend.dto.response.ApiResponse;
 import com.example.backend.dto.response.UserResponse;
 import com.example.backend.exception.AppException;
 import com.example.backend.exception.ErrorCode;
@@ -82,6 +84,29 @@ public class UserService {
 
     public void deleteUser(String id) {
         userRepository.deleteById(id);
+    }
+
+    public ApiResponse<Void> newPassword(String username, AuthUpdatePassword request) {
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("No found user"));
+        boolean comparePassword = passwordEncoder.matches(request.getPassword(), user.getPassword());
+
+        if (!comparePassword) {
+            return ApiResponse.<Void>builder()
+                    .code(400)
+                    .message("Please check current password")
+                    .build();
+        }
+        userMapper.updatePassword(user, request);
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
+
+        return ApiResponse.<Void>builder()
+                .code(200)
+                .message("Password updated successfully")
+                .build();
     }
 
     public List<User> getUsers() {
