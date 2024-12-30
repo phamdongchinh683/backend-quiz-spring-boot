@@ -22,6 +22,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 public class SecurityConfig {
   private final String[] publicEndPoints = {
+      "/", "/auth/login",
       "/api/auth/login", "/api/auth/check-token/", "/api/auth/signup",
   };
 
@@ -36,6 +37,14 @@ public class SecurityConfig {
             .permitAll()
             .anyRequest()
             .authenticated());
+
+    httpSecurity.formLogin()
+        .loginPage("/auth/")
+        .defaultSuccessUrl("/dashboard", true)
+        .failureUrl("/auth?error=true");
+
+    httpSecurity.logout()
+        .logoutSuccessUrl("/auth/");
 
     httpSecurity.oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer
         .decoder(customJwtDecoder)

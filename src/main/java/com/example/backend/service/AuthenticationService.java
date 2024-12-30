@@ -72,7 +72,6 @@ public class AuthenticationService {
                 }
                 var token = generateToken(user);
                 return AuthenticationResponse.builder().token(token).build();
-
         }
 
         private SignedJWT verifyToken(String token, boolean isRefresh) throws JOSEException, ParseException {
